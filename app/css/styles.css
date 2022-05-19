@@ -1,0 +1,46 @@
+body{
+    background: #FDFC47;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #24FE41, #FDFC47);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #24FE41, #FDFC47); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
+}
+.form_canvas{
+
+/* height: 400px;
+width: 400px; */
+display: grid;
+place-items: center;
+}
+
+.grid_container{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-gap: 15px;
+}
+.grid_item{
+ 
+}
+.form_item{
+    border-radius: 2px;
+    border-style: solid;
+    border-width: 2px;
+    min-width: 400px;
+    min-height: 30px;
+}
+.buttons_canvas{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 30px;
+}
+
+input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched{
+    border-color: #f12711;
+}
+#heading{
+color:white;
+font-size: 2em;
+}
+
+input[disabled="disabled"]{
+    opacity: 0.6;
+    cursor: not-allowed !important;
+}

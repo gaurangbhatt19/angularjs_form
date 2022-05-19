@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="userModule">
+  <head>
+    <title>Employee Details</title>
+    <link href="../css/styles.css" rel="stylesheet" type="text/css" />
+    <script src="../lib/angular.js"></script>
+    <script src="../app.js"></script>
+  </head>
+  <body>
+    <div class="form_canvas">
+    <h2 id="heading">Coriolis Employee Details Form</h2>
+    
+    <form class="grid_container" name="userDetails" ng-controller="userModuleController" novalidate>
+      <input class="grid_item form_item" placeholder="First Name" name="first_name" type="text" ng-model="user.firstname" ng-required="true"/>
+      
+      <div ng-show="userDetails.first_name.$invalid && userDetails.first_name.$touched">
+        <span>
+          <small style="color: red; display: block; text-align:center;">Enter Valid first name</small>
+        </span>
+      </div>
+      
+      <input class="grid_item form_item" placeholder="Middle Name" type="text" ng-model="user.middlename"/>
+      <input class="grid_item form_item" placeholder="Last Name"  name="last_name" type="text" ng-model="user.lastname" ng-required="true"/>
+
+      <div ng-show="userDetails.last_name.$invalid && userDetails.last_name.$touched">
+        <span>
+          <small style="color: red; display: block; text-align:center;">Enter Valid Last name</small>
+        </span>
+      </div>
+
+      <input class="grid_item form_item" placeholder="Enter Employee Id"  name="emp_id" type="text" ng-model="user.emp_id" ng-required="true"/>
+      
+      <div ng-show="userDetails.emp_id.$invalid && userDetails.emp_id.$touched">
+        <span>
+          <small style="color: red; display: block; text-align:center;">Enter Valid Employee Id</small>
+        </span>
+      </div>
+  
+      <input class="grid_item form_item" placeholder="Enter Contact Number" ng-maxlength="10" ng-minlength="10" type="number" name="contact_number" ng-model="user.contact_number" ng-required="true"/>
+
+      <div ng-show="userDetails.contact_number.$invalid && userDetails.contact_number.$touched">
+        <span>
+          <small style="color: red; display: block; text-align:center;">Enter Valid Contact Number</small>
+        </span>
+      </div>
+
+      <input class="grid_item form_item" placeholder="Enter Email" type="email" name="email" ng-model="user.email" ng-required="true"/>
+
+      <div ng-show="userDetails.email.$invalid && userDetails.email.$touched">
+        <span>
+          <small style="color: red; display: block; text-align:center;">Enter Valid Emailid</small>
+        </span>
+      </div>
+      
+      <textarea class="grid_item form_item" placeholder="Enter your Hobies"></textarea>
+      <select class="grid_item form_item">
+        <option value="female">Female</option>
+        <option value="male">Male</option>
+        <option value="other">Other</option>
+      </select>
+
+      <input class="grid_item form_item" placeholder="Enter Experience in years" name="experience" type="number" ng-model="user.experience" ng-required="true"/>
+
+      <div ng-show="userDetails.experience.$invalid && userDetails.experience.$touched">
+        <span>
+          <small style="color: red; display: block; text-align:center;">Enter Experience</small>
+        </span>
+      </div>
+
+      <input class="grid_item form_item" placeholder="Enter City Name" name="city" type="text" ng-model="user.city" ng-required="true" />
+
+      <div ng-show="userDetails.city.$invalid && userDetails.city.$touched">
+        <span>
+          <small style="color: red; display: block; text-align:center;">Enter City</small>
+        </span>
+      </div>
+
+      <div class="buttons_canvas">
+        <input type="submit" ng-disabled="userDetails.$invalid" value="Submit" style="background-color: dodgerblue; border-radius: 2px; color:white; padding: 4px;"/>
+        <input type="reset" value="Cancel" style="background-color: red; border-radius: 2px; color:white; padding: 4px; text-align: center;"/>
+      </div>
+      
+    </form>
+  </div>
+
+  </body>
+</html>
