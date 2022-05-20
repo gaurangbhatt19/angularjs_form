@@ -1,7 +1,14 @@
-<div>
-    <h2>User Details</h2>
+<div id="container">
     
-    <ul ng-modal="details" ng-controller="userDetailsController">
-        <li ng-repeat="value in details track by $index">{{value}}</li>
-    </ul>
+    <h2 id="headingDetails" class="heading">User Details</h2>
+    <ol class="list_conatiner" ng-modal="details" ng-controller="userDetailsController">
+        <li class="list_item" ng-repeat="value in details track by $index"><span style="font-style: bold; font-size: large;">{{value[0]}}:</span> {{value[1]}}</li>
+    </ol>
+    <!-- <ul class="list_conatiner">
+        <li class="list_item">Value 1</li>
+        <li class="list_item" >Value 2</li>
+        <li class="list_item" >Value 3</li>
+        <li class="list_item" >Value 4</li>
+    </ul> -->
+    <button class="grid_item_button" ng-click="navigateBack()">Go Back</button>
 </div>

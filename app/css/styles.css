@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&family=Source+Sans+Pro:wght@300;700&display=swap');
 body{
     background: #FDFC47;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #24FE41, #FDFC47);  /* Chrome 10-25, Safari 5.1-6 */
@@ -105,3 +105,39 @@ input[disabled="disabled"]{
     transform: scaleX(1);
     transform-origin: bottom left;
   }
+
+  #container{
+      display: grid;
+       min-width: 400px;
+       min-height: 300px;
+       place-items: center;
+       
+  }
+#headingDetails{
+    color:#FF5733;
+font-size: 2em;
+margin-bottom: 1em;
+margin-left: 1em;
+
+}
+  .list_conatiner{
+     
+  }
+  .list_item{
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: medium;
+    font-weight: 300;
+  }
+  .grid_item_button{
+    border: dodgerblue solid 2px;
+    border-radius: 10px;
+    width:7em;
+    height: 3em;
+    cursor: pointer;
+    background-color: dodgerblue;
+    color: white;
+    margin-left: 3em;
+    
+}
+  

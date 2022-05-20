@@ -44,12 +44,14 @@ userModule.controller("userModuleController",["$scope","$location","$rootScope",
     }
 }])
 
-userModule.controller("userDetailsController",["$scope","formDetails",function($scope,formDetails){
-   
+userModule.controller("userDetailsController",["$scope","formDetails","$location",function($scope,formDetails,$location){
+       $scope.navigateBack=function(){
+           $location.path("/")
+       }
        console.log(formDetails.getDetails(),"userDetailsController")
        var res=[]
        for(let [key,value] of Object.entries(formDetails.getDetails())){
-           res.push(value)
+           res.push([key,value])
        }
        $scope.details=res
        console.log($scope.details)

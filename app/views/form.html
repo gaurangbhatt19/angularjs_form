@@ -28,8 +28,8 @@
           <small style="color: red; display: block; text-align:center;font-size: medium;">Enter Valid Employee Id</small>
         </span>
       </div>
-      
-      <input class="grid_item form_item" id="datepicker" type="date" name="date_of_joining" ng-model="user.dateofjoining" ng-required="true" />
+      <label for="dateofjoining" style="color:white; font-style: bold; font-size: medium;">Select Date Of Joining</label>
+      <input class="grid_item form_item" id="datepicker" value="2013-01-08" type="date" name="date_of_joining" ng-model="user.dateofjoining" ng-required="true" />
       <div ng-show="userDetails.date_of_joining.$invalid && userDetails.date_of_joining.$touched">
         <span>
           <small style="color: red; display: block; text-align:center;font-size: medium;">Valid Date is Needed</small>
@@ -60,7 +60,7 @@
         <option value="male">Male</option>
         <option value="other">Other</option>
       </select>
-
+     
       <input class="grid_item form_item" placeholder="Enter Experience in years *" name="experience" type="number" ng-model="user.experience" ng-required="true"/>
 
       <div ng-show="userDetails.experience.$invalid && userDetails.experience.$touched">
