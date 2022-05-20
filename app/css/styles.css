@@ -8,9 +8,6 @@ body{
 
 
 .form_canvas{
-
-/* height: 400px;
-width: 400px; */
 display: grid;
 place-items: center;
 }
@@ -20,9 +17,7 @@ place-items: center;
     grid-template-columns: 100%;
     grid-gap: 15px;
 }
-.grid_item{
- 
-}
+
 textarea { resize: vertical; }
 
 .form_item{
@@ -46,7 +41,7 @@ input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched{
     border-color: #f12711;
 }
 #heading{
-color:white;
+color:#FF5733;
 font-size: 2em;
 margin-bottom: 1em;
 }
