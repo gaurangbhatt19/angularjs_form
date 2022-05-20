@@ -21,8 +21,8 @@ userModule.controller("userModuleController",["$scope","$location","$rootScope",
     $scope.getUserDetails=function(user){
         $location.path("/details")
         let date=new Date(user.dateofjoining)
-        console.log(date.toLocaleDateString())
-        user.dateofjoining=date.toLocaleDateString().toString()
+        let [month,day,year]=date.toLocaleDateString().toString().split("/")
+        user.dateofjoining=day+"/"+month+"/"+year
         console.group(typeof user.dateofjoining)
         $rootScope.$broadcast("Formsubmitted",user)
         console.log(user)
