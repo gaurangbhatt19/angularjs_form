@@ -1,8 +1,12 @@
+
 body{
     background: #FDFC47;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #24FE41, #FDFC47);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #24FE41, #FDFC47); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
 }
+
+
+
 .form_canvas{
 
 /* height: 400px;
@@ -19,23 +23,19 @@ place-items: center;
 .grid_item{
  
 }
-.text_area{
-    /* grid-column: 1/4;
-    min-width: 100%; */
-}
+textarea { resize: vertical; }
 
 .form_item{
-    border:none;
-    border-bottom: solid;
-    border-radius: 10px;
+    border-radius: 8px;
     border-style: solid;
-    border-width: 2px;
     min-width: 400px;
     min-height: 20px;
     padding:12px 20px;
+    border: none;
+    border-bottom: 3px solid yellowgreen;
 }
 .form_item:hover{
-    border-color:dodgerblue
+    border-color:dodgerblue;
 }
 .form_item#datepicker{
     cursor:pointer;
@@ -48,6 +48,7 @@ input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched{
 #heading{
 color:white;
 font-size: 2em;
+margin-bottom: 1em;
 }
 
 input[disabled="disabled"]{
@@ -81,3 +82,31 @@ input[disabled="disabled"]{
     opacity:1;
     background-color:#ff100b;
 }
+.selectlist{
+    cursor:pointer;
+}
+
+
+.hover-underline-animation {
+    display: inline-block;
+    position: relative;
+    color: grey;
+  }
+  
+  .hover-underline-animation:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: grey;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+  
+  .hover-underline-animation:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }

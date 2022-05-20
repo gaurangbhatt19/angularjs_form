@@ -1,12 +1,15 @@
  <div class="form_canvas">
-    <h1 id="heading">Coriolis Employee Details Form</h1>
+   <a href="https://www.coriolis.co.in/">
+     <h1 id="heading" class="hover-underline-animation" style="font-size:xx-large; font-style:bold;">Coriolis Employee Details Form</h1>
+   </a>
+    
     
     <form class="grid_container" name="userDetails" ng-controller="userModuleController" ng-submit="getUserDetails(user)">
       <input class="grid_item form_item" placeholder="First Name" name="first_name" type="text" ng-model="user.firstname" ng-required="true"/>
       
       <div ng-show="userDetails.first_name.$invalid && userDetails.first_name.$touched">
         <span>
-          <small style="color: red; display: block; text-align:center;">Enter Valid first name</small>
+          <small style="color: red; display: block; text-align:center;font-size: medium;">Enter Valid first name</small>
         </span>
       </div>
       
@@ -15,7 +18,7 @@
 
       <div ng-show="userDetails.last_name.$invalid && userDetails.last_name.$touched">
         <span>
-          <small style="color: red; display: block; text-align:center;">Enter Valid Last name</small>
+          <small style="color: red; display: block; text-align:center;font-size: medium;">Enter Valid Last name</small>
         </span>
       </div>
 
@@ -23,14 +26,14 @@
       
       <div ng-show="userDetails.emp_id.$invalid && userDetails.emp_id.$touched">
         <span>
-          <small style="color: red; display: block; text-align:center;">Enter Valid Employee Id</small>
+          <small style="color: red; display: block; text-align:center;font-size: medium;">Enter Valid Employee Id</small>
         </span>
       </div>
       
       <input class="grid_item form_item" id="datepicker" type="date" name="date_of_joining" ng-model="user.dateofjoining" ng-required="true" />
       <div ng-show="userDetails.date_of_joining.$invalid && userDetails.date_of_joining.$touched">
         <span>
-          <small style="color: red; display: block; text-align:center;">Valid Date is Needed</small>
+          <small style="color: red; display: block; text-align:center;font-size: medium;">Valid Date is Needed</small>
         </span>
       </div>
 
@@ -39,7 +42,7 @@
 
       <div ng-show="userDetails.contact_number.$invalid && userDetails.contact_number.$touched">
         <span>
-          <small style="color: red; display: block; text-align:center;">Enter Valid Contact Number</small>
+          <small style="color: red; display: block; text-align:center;font-size: medium;">Enter Valid Contact Number</small>
         </span>
       </div>
 
@@ -47,13 +50,13 @@
 
       <div ng-show="userDetails.email.$invalid && userDetails.email.$touched">
         <span>
-          <small style="color: red; display: block; text-align:center;">Enter Valid Emailid</small>
+          <small style="color: red; display: block; text-align:center;font-size: medium;">Enter Valid Emailid</small>
         </span>
       </div>
       
       <textarea class="grid_item text_area form_item" placeholder="Enter your Hobies"></textarea>
 
-      <select class="grid_item form_item">
+      <select class="grid_item form_item selectlist">
         <option value="female">Female</option>
         <option value="male">Male</option>
         <option value="other">Other</option>
@@ -63,7 +66,7 @@
 
       <div ng-show="userDetails.experience.$invalid && userDetails.experience.$touched">
         <span>
-          <small style="color: red; display: block; text-align:center;">Enter Experience</small>
+          <small style="color: red; display: block; text-align:center;font-size: medium;">Enter Experience</small>
         </span>
       </div>
 
@@ -71,7 +74,7 @@
 
       <div ng-show="userDetails.city.$invalid && userDetails.city.$touched">
         <span>
-          <small style="color: red; display: block; text-align:center;">Enter City</small>
+          <small style="color: red; display: block; text-align:center;font-size: medium;">Enter City</small>
         </span>
       </div>
 
