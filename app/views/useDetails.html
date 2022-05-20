@@ -1,7 +1,7 @@
 <div>
     <h2>User Details</h2>
-    <h2>{{details}}</h2>
+    
     <ul ng-modal="details" ng-controller="userDetailsController">
-        <li ng-repeat="value in details">{{value}}</li>
+        <li ng-repeat="value in details track by $index">{{value}}</li>
     </ul>
 </div>
