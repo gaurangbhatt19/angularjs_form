@@ -1,9 +1,11 @@
 <div id="container">
     
     <h2 id="headingDetails" class="heading">User Details</h2>
-    <ol class="list_conatiner" ng-modal="details" ng-controller="userDetailsController">
-        <li class="list_item" ng-repeat="value in details track by $index"><span style="font-style: bold; font-size: large;">{{value[0]}}:</span> {{value[1]}}</li>
+    <div style="background-color: white;border-radius: 10px;padding:10px;margin-bottom: 10px;margin-left: 30px;">
+    <ol class="list_conatiner" ng-modal="details" ng-controller="userDetailsController" style="margin-right:10px">
+        <li class="list_item" ng-repeat="value in details track by $index"><span style="font-style: bold; font-size: larger;">{{value[0]}}:</span> {{value[1]}}</li>
     </ol>
+    </div>
     <!-- <ul class="list_conatiner">
         <li class="list_item">Value 1</li>
         <li class="list_item" >Value 2</li>

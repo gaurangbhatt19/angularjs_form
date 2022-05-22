@@ -18,7 +18,10 @@ userModule.config(['$routeProvider',function($routeProvider){
 
 userModule.factory("formDetails",function(){
     let formValues={}
-    var save_values={}
+    var save_values={
+        
+    }
+    console.log(save_values["First Name"])
     formValues.saveDetails=function(values){
         save_values=values
     }
