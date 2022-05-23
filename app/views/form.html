@@ -21,7 +21,7 @@
         </span>
       </div>
 
-      <input class="grid_item form_item" placeholder="Enter Employee Id *"  name="emp_id" type="text" ng-model="user.emp_id" ng-required="true"/>
+      <input class="grid_item form_item" placeholder="Enter Employee Id *" ng-maxlength="8" ng-minlength="4" name="emp_id" type="text" ng-model="user.emp_id" ng-required="true"/>
       
       <div ng-show="userDetails.emp_id.$invalid && userDetails.emp_id.$touched">
         <span>
