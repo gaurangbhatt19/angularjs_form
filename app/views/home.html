@@ -1,0 +1,31 @@
+<div style="margin-top:20px" class="text-center">
+<div class="container">
+    <div class="row row-cols-auto gap-4 justify-content-center">
+    <div class="card col-4 card_item " ng-repeat="i in details track by $index" ng-if='i.title !== "undefined undefined"' ng-controller="toggleSeeMore">
+        <img src="https://picsum.photos/400" class="card-img-top;" alt="random_pic" >
+        <div class="card-body">
+          <h5 class="card-title">{{i.title}}</h5>
+          <div>
+          <div class="card-text" style="display: inline;">
+            <span ng-if="isShowMore">
+               {{i.description.substring(0,10)}}
+            </span>
+            <span ng-if="!isShowMore">
+              {{i.description}}
+            </span>
+          </div>
+          <span id="show_more" ng-show="isShowMore" style="display: inline;" ng-click="toggleShowMore(i.emp_id)">....show more</span>
+          <span id="show_more" ng-show="!isShowMore" style="display: inline;" ng-click="toggleShowMore(i.emp_id)">....show less</span>
+        </div>
+          <!-- <button class="btn btn-success" ng-click="getInfo()"><i class="material-icons">info</i> Show More</button> -->
+          <button class="btn btn-primary mt-4" ng-click="redirectUser()"><i class="material-icons">add</i> Add User</button>
+        </div>
+    </div>
+    
+    </div>
+
+    
+    
+</div>
+
+</div>

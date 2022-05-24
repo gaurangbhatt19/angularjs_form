@@ -10,6 +10,8 @@ body{
 .form_canvas{
 display: grid;
 place-items: center;
+margin:auto;
+padding: 20px;
 }
 
 .grid_container{
@@ -44,6 +46,9 @@ input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched{
 color:#FF5733;
 font-size: 2em;
 margin-bottom: 1em;
+font-size:xx-large;
+font-style:bold;
+margin-top: 20px;
 }
 
 input[disabled="disabled"]{
@@ -56,13 +61,17 @@ input[disabled="disabled"]{
     grid-gap: 10px;
     width:100%
 }
-.button_items.submit{
+.submit{
     border: dodgerblue solid 2px;
     border-radius: 10px;
     width:7em;
     height: 3em;
     grid-column: 2/2;
     cursor: pointer;
+    background-color: dodgerblue;
+    border-radius: 2px;
+    color:white;
+    padding: 4px;
 }
 .cancel{
     border: red solid 2px;
@@ -72,6 +81,12 @@ input[disabled="disabled"]{
     height: 3em;
     grid-column: 3/3;
     cursor: pointer;
+    background-color: #ff100b;
+    border-radius: 2px;
+    color:white;
+    padding: 4px;
+    text-align: center;
+
 }
 .cancel:hover{
     opacity:1;
@@ -120,9 +135,7 @@ margin-bottom: 1em;
 margin-left: 1em;
 
 }
-  .list_conatiner{
-     
-  }
+  
   .list_item{
     font-family: 'Roboto', sans-serif;
     font-family: 'Source Sans Pro', sans-serif;
@@ -140,4 +153,36 @@ margin-left: 1em;
     margin-left: 3em;
     
 }
-  
+.label{
+
+}
+.form_error{
+    color: red;
+    display: block; 
+    text-align:center;
+    font-size: medium;
+    position: relative;
+    top:-16px;
+    margin-bottom: -10px
+}
+.input_item{
+    display: inline;
+}
+.card_container{
+    margin-left: 10vw;
+    margin-top: 5vh;
+}
+.card_item{
+    margin-top:10px;margin-left: 1em;
+}
+img{
+    margin-top: 10px;
+    border-radius: 4px;
+}
+#show_more{
+    color: grey;
+}
+#show_more:hover{
+    color:black;
+    cursor: pointer;
+}

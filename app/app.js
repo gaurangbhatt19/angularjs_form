@@ -4,8 +4,12 @@ userModule.config(['$routeProvider',function($routeProvider){
     
     $routeProvider
     .when("/",{
-        templateUrl: "./app/views/form.html"
-        ,controller: "userModuleController"
+        templateUrl: "./app/views/home.html",
+        controller:"userDetailsController"
+    })
+    .when("/addUser",{
+        templateUrl:"./app/views/form.html",
+        controller:"userModuleController"
     })
     .when("/details",{
         templateUrl :"./app/views/useDetails.html",
@@ -15,13 +19,36 @@ userModule.config(['$routeProvider',function($routeProvider){
         redirectTo:"/"
     })
 }])
+userModule.factory("allUsersDetails",function(){
+    let usersValues=[{
+        title:"Gaurang Bhatt",
+        description:"Description",
+        emp_id:"CTE-",
+    },{
+        title:"Gaurang Bhatt",
+        description:"Description",
+        emp_id:"CTE-"
+    }]
+
+    var allDetails={}
+    allDetails.saveValues=function(value){
+        usersValues.push(value)
+    }
+    allDetails.getValues=()=>{
+        return usersValues
+    }
+    allDetails.setValues=function(values){
+        usersValues=values
+    }
+
+    return allDetails
+})
 
 userModule.factory("formDetails",function(){
     let formValues={}
     var save_values={
         
     }
-    console.log(save_values["First Name"])
     formValues.saveDetails=function(values){
         save_values=values
     }
@@ -33,32 +60,87 @@ userModule.factory("formDetails",function(){
 
 })
 
-userModule.controller("userModuleController",["$scope","$location","$rootScope","formDetails",function($scope,$location,$rootScope,formDetails){
+userModule.controller("userModuleController",["$scope","$location","formDetails","allUsersDetails",function($scope,$location,formDetails,allUsersDetails){
     $scope.getUserDetails=function(user){
-        $location.path("/details")
+        $location.path("/")
         let date=new Date(user.dateofjoining)
         let [month,day,year]=date.toLocaleDateString().toString().split("/")
         user.dateofjoining=day+"/"+month+"/"+year
 
         formDetails.saveDetails(user)
         console.log(formDetails.getDetails(),"userModuleController")
-        $rootScope.$broadcast("Formsubmitted",user)
+        // $rootScope.$broadcast("Formsubmitted",user)
         console.log(user)
+        var details=formDetails.getDetails()
+       var description=""
+       var res={}
+       if(details.middlename===undefined){
+         details.middlename=""
+       }
+
+       if(details.hobbies===undefined){
+           details.hobbies=""
+       }
+
+       if(details.middlename===undefined){
+           description="Full Name: "+details.firstname+" "+details.lastname+` \r\nEmployee Id : ${details.emp_id} \nDate Of Joining  ${details.dateofjoining} \nContact Number ${details.contact_number} \nEmail ${details.email} \nExperience (yrs) ${details.experience} \nCity ${details.city} \nHobbies: ${details.hobbies}`
+           res={
+              title:details.firstname+" "+details.lastname,
+              description:description,
+              emp_id:details.emp_id
+            }
+       }else{
+        description=`Full Name: ${details.firstname} ${details.middlename} ${details.lastname} \r\nEmployee Id - ${details.emp_id} \nDate Of Joining  ${details.dateofjoining} \nContact Number ${details.contact_number} \nEmail ${details.email} \nExperience (yrs) ${details.experience} \nCity ${details.city} Hobbies: ${details.hobbies}` 
+            res={
+            title:details.firstname+" "+details.middlename+" "+details.lastname,
+            description:description,
+            emp_id:details.emp_id
+          }
     }
+        allUsersDetails.saveValues(res)
+    }
+
+    
+
+
 }])
 
-userModule.controller("userDetailsController",["$scope","formDetails","$location",function($scope,formDetails,$location){
-       $scope.navigateBack=function(){
+userModule.controller("userDetailsController",["$scope","formDetails","$location","allUsersDetails",function($scope,formDetails,$location,allUsersDetails){
+       
+        $scope.isShowMore=true
+        console.log($scope.isShowMore)
+        
+        $scope.navigateBack=function(){
            $location.path("/")
        }
        console.log(formDetails.getDetails(),"userDetailsController")
-       var res=[]
-       for(let [key,value] of Object.entries(formDetails.getDetails())){
-           res.push([key,value])
-       }
-       $scope.details=res
-       console.log($scope.details)
-   
 
-   
+       $scope.details=allUsersDetails.getValues()
+       console.log($scope.details)
+
+       $scope.redirectUser=function(){
+        $location.path("/addUser")
+       }
+}])
+
+userModule.controller("toggleSeeMore",["$scope",function($scope){ 
+    $scope.isShowMore=true
+    $scope.toggleShowMore=function(emp_id){
+       
+        $scope.isShowMore=!$scope.isShowMore
+        // console.log(emp_id)
+        // let userValues=allUsersDetails.getValues()
+        // console.log(userValues)
+        // userValues=userValues.map((value)=>{
+        //     if(value.emp_id===emp_id){
+        //         value.isShowMore=!value.isShowMore
+        //     }
+        //     else{
+        //         return value
+        //     }
+        // })
+        // allUsersDetails.setValues(userValues)
+        // console.log($scope.isShowMore)
+
+    }
 }])

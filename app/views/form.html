@@ -1,38 +1,40 @@
  <div class="form_canvas">
    <a href="https://www.coriolis.co.in/">
-     <h1 id="heading" class="hover-underline-animation" style="font-size:xx-large; font-style:bold;">Coriolis Employee Details Form</h1>
+     <h1 id="heading" class="hover-underline-animation">Coriolis Employee Details Form</h1>
    </a>
     
     <form class="grid_container" name="userDetails" ng-controller="userModuleController" ng-submit="getUserDetails(user)">
-      <input class="grid_item form_item" placeholder="First Name *" name="first_name" type="text" ng-model="user.firstname" ng-required="true"/>
       
+      <input class="d-inline grid_item form_item" placeholder="First Name *" name="first_name" type="text" ng-model="user.firstname" ng-required="true"/>
       <div ng-show="userDetails.first_name.$invalid && userDetails.first_name.$touched">
-        <span>
-          <small style="color: red; display: block; text-align:center;font-size: medium;">Enter Valid first name</small>
+        <span class="form_error">
+          <small >Enter Valid first name</small>
         </span>
       </div>
+  
+      
       
       <input class="grid_item form_item" placeholder="Middle Name" type="text" ng-model="user.middlename"/>
       <input class="grid_item form_item" placeholder="Last Name *"  name="last_name" type="text" ng-model="user.lastname" ng-required="true"/>
 
       <div ng-show="userDetails.last_name.$invalid && userDetails.last_name.$touched">
-        <span>
-          <small style="color: red; display: block; text-align:center;font-size: medium;">Enter Valid Last name</small>
+        <span class="form_error">
+          <small >Enter Valid Last name</small>
         </span>
       </div>
 
       <input class="grid_item form_item" placeholder="Enter Employee Id *" ng-maxlength="8" ng-minlength="4" name="emp_id" type="text" ng-model="user.emp_id" ng-required="true"/>
       
-      <div ng-show="userDetails.emp_id.$invalid && userDetails.emp_id.$touched">
-        <span>
-          <small style="color: red; display: block; text-align:center;font-size: medium;">Enter Valid Employee Id</small>
+      <div  ng-show="userDetails.emp_id.$invalid && userDetails.emp_id.$touched">
+        <span class="form_error">
+          <small >Enter Valid Employee Id</small>
         </span>
       </div>
-      <label for="dateofjoining" style="color:white; font-style: bold; font-size: medium;">Select Date Of Joining</label>
+      <label for="dateofjoining" class="label" style="color:white; font-style: bold; font-size: medium;">Select Date Of Joining</label>
       <input class="grid_item form_item" id="datepicker" value="2013-01-08" type="date" name="date_of_joining" ng-model="user.dateofjoining" ng-required="true" />
-      <div ng-show="userDetails.date_of_joining.$invalid && userDetails.date_of_joining.$touched">
-        <span>
-          <small style="color: red; display: block; text-align:center;font-size: medium;">Valid Date is Needed</small>
+      <div  ng-show="userDetails.date_of_joining.$invalid && userDetails.date_of_joining.$touched">
+        <span class="form_error">
+          <small >Valid Date is Needed</small>
         </span>
       </div>
 
@@ -40,20 +42,20 @@
       <input class="grid_item form_item" placeholder="Enter Contact Number *" ng-maxlength="10" ng-minlength="10" type="number" name="contact_number" ng-model="user.contact_number" ng-required="true"/>
 
       <div ng-show="userDetails.contact_number.$invalid && userDetails.contact_number.$touched">
-        <span>
-          <small style="color: red; display: block; text-align:center;font-size: medium;">Enter Valid Contact Number</small>
+        <span class="form_error">
+          <small >Enter Valid Contact Number</small>
         </span>
       </div>
 
       <input class="grid_item form_item" placeholder="Enter Email *" type="email" name="email" ng-model="user.email" ng-required="true"/>
 
-      <div ng-show="userDetails.email.$invalid && userDetails.email.$touched">
-        <span>
-          <small style="color: red; display: block; text-align:center;font-size: medium;">Enter Valid Emailid</small>
+      <div  ng-show="userDetails.email.$invalid && userDetails.email.$touched">
+        <span class="form_error">
+          <small >Enter Valid Emailid</small>
         </span>
       </div>
       
-      <textarea class="grid_item text_area form_item" placeholder="Enter your Hobbies"></textarea>
+      <textarea class="grid_item text_area form_item" placeholder="Enter your Hobbies" ng-model="user.hobbies"></textarea>
 
       <select class="grid_item form_item selectlist">
         <option value="female">Female</option>
@@ -64,22 +66,24 @@
       <input class="grid_item form_item" placeholder="Enter Experience in years *" name="experience" type="number" ng-model="user.experience" ng-required="true"/>
 
       <div ng-show="userDetails.experience.$invalid && userDetails.experience.$touched">
-        <span>
-          <small style="color: red; display: block; text-align:center;font-size: medium;">Enter Experience</small>
+        <span class="form_error"> 
+          <small >Enter Experience</small>
         </span>
       </div>
 
       <input class="grid_item form_item" placeholder="Enter City Name *" name="city" type="text" ng-model="user.city" ng-required="true" />
 
       <div ng-show="userDetails.city.$invalid && userDetails.city.$touched">
-        <span>
-          <small style="color: red; display: block; text-align:center;font-size: medium;">Enter City</small>
+        <span class="form_error">
+          <small >Enter City</small>
         </span>
       </div>
 
       <div class="buttons_canvas">
-        <input class="button_items submit" type="submit" ng-disabled="userDetails.$invalid" value="Submit" style="background-color: dodgerblue; border-radius: 2px; color:white; padding: 4px;"/>
-        <input class="button_items cancel" type="reset" value="Cancel" style="background-color: #ff100b; border-radius: 2px; color:white; padding: 4px; text-align: center;"/>
+        <button class="btn btn-success button_items submit" type="submit" ng-disabled="userDetails.$invalid">Submit</button>
+        <!-- <input class="button_items submit btn btn-outline-success" type="submit" ng-disabled="userDetails.$invalid" value="Submit"/> -->
+        <button class="btn btn-danger button_items cancel" type="reset">Cancel</button>
+        <!-- <input class="button_items cancel" type="reset" value="Cancel"/> -->
       </div>
       
     </form>
