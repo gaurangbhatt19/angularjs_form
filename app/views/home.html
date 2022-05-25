@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row row-cols-auto gap-4 justify-content-center" >
       
-    <div class="card col-4 card_item" ng-repeat="i in details | filter: searchFunction" ng-controller="userDetailsController">
+    <div class="card col-3 card_item" ng-repeat="i in details | filter: searchFunction" ng-controller="userDetailsController">
         <img src="./app/css/male_avtar.png" ng-if="i.description.gender==='Male'" class="card-img-top;" alt="male_avtar" >
         <img src="./app/css/female_avtar.png" ng-if="i.description.gender==='Female'" class="card-img-top;" alt="female_avtar" >
         <img src="./app/css/other_avtar.png" ng-if="i.description.gender==='Other'" class="card-img-top;" alt="other_avtar" >
