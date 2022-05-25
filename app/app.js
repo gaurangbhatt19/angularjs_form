@@ -70,11 +70,18 @@ userModule.factory("formDetails",function(){
 userModule.factory("searchText",function(){
     let arr={}
     var text=""
+    var searchBy=""
     arr.setText=function(text1){
      text=text1
     }
     arr.getText=function(){
         return text
+    }
+    arr.setSearchBy=function(searchType){
+        searchBy=searchType
+    }
+    arr.getSearchBy=function(){
+        return searchBy
     }
     return arr
 })
@@ -141,16 +148,13 @@ userModule.controller("userModuleController",["$scope","$location","formDetails"
 }])
 
 userModule.controller("userDetailsController",["$scope","formDetails","$location","allUsersDetails","$rootScope","searchText",function($scope,formDetails,$location,allUsersDetails,$rootScope,searchText){
-    $scope.searchBy="First Name"
+        $scope.searchBy="First Name"
 
         $scope.setSearchBy=function(searchBy){
             console.log("Search By",searchBy)
             $scope.searchBy=searchBy
+            searchText.setSearchBy(searchBy)
         }
-        // $scope.setSearchValue=function(searchValue){
-        //     $scope.searchValue=searchValue
-        // }
-
 
        $scope.setText=(text)=>{
         searchText.setText(text)
@@ -170,23 +174,14 @@ userModule.controller("userDetailsController",["$scope","formDetails","$location
        $scope.searchFunction=function(i){
            console.log("search Function",i)
            console.log(searchText.getText(),"Root Scope")
-           return i.firstname.toLowerCase().includes(searchText.getText().toLowerCase())
+           console.log("Search By",searchText.getSearchBy())
+           if(searchText.getSearchBy()==="First Name"){
+               return i.firstname.toLowerCase().includes(searchText.getText().toLowerCase())
+           }else{
+               return i.emp_id.toLowerCase().includes(searchText.getText().toLowerCase())
+           }
+           
        }
-       
-    //    $scope.searchDetails=function(searchvalue){
-    //        console.log("Search Detail Search By",$scope.searchBy)
-    //        console.log("Search value",searchvalue)
-
-    //        if(searchvalue===undefined){
-    //            searchvalue=""
-    //            $scope.searchText=searchvalue
-    //            console.log("userDetails",$scope.searchText)
-    //        }else{
-    //            $scope.searchText=searchvalue
-    //            console.log("userDetails",$scope.searchText)
-    //        }
-    //    }
-
        $scope.redirectUser=function(){
         $location.path("/addUser")
        }
