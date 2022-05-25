@@ -27,13 +27,14 @@ userModule.factory("allUsersDetails",function(){
         firstname:"Gaurang",
         description:{
             fullname:"Gaurang Bhatt",
-            emp_id:`CTE`,
+               emp_id:`CTE`,
                dateofjoining:`17/05/2022`,
                contact_number:`1234567890`,
                email:`gaurangbhatt19@gmail.com`,
                experience:`1`,
                city:`Haridwar`,
-               hobbies:``
+               hobbies:``,
+               gender:"Male"
         },
         emp_id:"CTE-",
     }]
@@ -70,7 +71,7 @@ userModule.factory("formDetails",function(){
 userModule.factory("searchText",function(){
     let arr={}
     var text=""
-    var searchBy=""
+    var searchBy="First Name"
     arr.setText=function(text1){
      text=text1
     }
@@ -89,6 +90,7 @@ userModule.factory("searchText",function(){
 userModule.controller("userModuleController",["$scope","$location","formDetails","allUsersDetails",function($scope,$location,formDetails,allUsersDetails){
     $scope.getUserDetails=function(user){
         $location.path("/")
+        console.log(user,"form values")
         let date=new Date(user.dateofjoining)
         let [month,day,year]=date.toLocaleDateString().toString().split("/")
         user.dateofjoining=day+"/"+month+"/"+year
@@ -115,7 +117,8 @@ userModule.controller("userModuleController",["$scope","$location","formDetails"
                email:details.email,
                experience:details.experience,
                city:details.city,
-               hobbies:details.hobbies
+               hobbies:details.hobbies,
+               gender:details.gender
            }
            description="Full Name: "+details.firstname+" "+details.lastname+` \r\nEmployee Id : ${details.emp_id} \nDate Of Joining  ${details.dateofjoining} \nContact Number ${details.contact_number} \nEmail ${details.email} \nExperience (yrs) ${details.experience} \nCity ${details.city} \nHobbies: ${details.hobbies}`
            res={
@@ -133,7 +136,8 @@ userModule.controller("userModuleController",["$scope","$location","formDetails"
             email:details.email,
             experience:details.experience,
             city:details.city,
-            hobbies:details.hobbies
+            hobbies:details.hobbies,
+            gender:details.gender
         }
         description=`Full Name: ${details.firstname} ${details.middlename} ${details.lastname} \r\nEmployee Id - ${details.emp_id} \nDate Of Joining  ${details.dateofjoining} \nContact Number ${details.contact_number} \nEmail ${details.email} \nExperience (yrs) ${details.experience} \nCity ${details.city} Hobbies: ${details.hobbies}` 
             res={

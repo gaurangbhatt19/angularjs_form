@@ -57,10 +57,11 @@
       
       <textarea class="grid_item text_area form_item" placeholder="Enter your Hobbies" ng-model="user.hobbies"></textarea>
 
-      <select class="grid_item form_item selectlist">
-        <option value="female">Female</option>
-        <option value="male">Male</option>
-        <option value="other">Other</option>
+      <select placeholder="Select gender" class="grid_item form_item selectlist" ng-model="user.gender">
+        <option value="" disabled selected>Select Gender</option>
+        <option value="Female">Female</option>
+        <option value="Male">Male</option>
+        <option value="Other">Other</option>
       </select>
      
       <input class="grid_item form_item" placeholder="Enter Experience in years *" name="experience" type="number" ng-model="user.experience" ng-required="true"/>
