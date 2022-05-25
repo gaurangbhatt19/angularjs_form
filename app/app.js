@@ -1,4 +1,4 @@
-var userModule= angular.module("userModule",['ngRoute'])
+var userModule= angular.module("userModule",['ngRoute','ui.bootstrap'])
 
 userModule.config(['$routeProvider',function($routeProvider){
     
@@ -19,15 +19,22 @@ userModule.config(['$routeProvider',function($routeProvider){
         redirectTo:"/"
     })
 }])
+
+
 userModule.factory("allUsersDetails",function(){
     let usersValues=[{
         title:"Gaurang Bhatt",
-        description:"Description",
+        description:{
+            fullname:"Gaurang Bhatt",
+            emp_id:`CTE`,
+               dateofjoining:`17/05/2022`,
+               contact_number:`1234567890`,
+               email:`gaurangbhatt19@gmail.com`,
+               experience:`1`,
+               city:`Haridwar`,
+               hobbies:``
+        },
         emp_id:"CTE-",
-    },{
-        title:"Gaurang Bhatt",
-        description:"Description",
-        emp_id:"CTE-"
     }]
 
     var allDetails={}
@@ -69,44 +76,62 @@ userModule.controller("userModuleController",["$scope","$location","formDetails"
 
         formDetails.saveDetails(user)
         console.log(formDetails.getDetails(),"userModuleController")
-        // $rootScope.$broadcast("Formsubmitted",user)
         console.log(user)
         var details=formDetails.getDetails()
        var description=""
+       var description1={}
        var res={}
-       if(details.middlename===undefined){
-         details.middlename=""
-       }
 
        if(details.hobbies===undefined){
            details.hobbies=""
        }
 
        if(details.middlename===undefined){
+           details.middlename=""
+           description1={
+               fullname:details.firstname+" "+details.lastname,
+               emp_id:details.emp_id,
+               dateofjoining:details.dateofjoining,
+               contact_number:details.contact_number,
+               email:details.email,
+               experience:details.experience,
+               city:details.city,
+               hobbies:details.hobbies
+           }
            description="Full Name: "+details.firstname+" "+details.lastname+` \r\nEmployee Id : ${details.emp_id} \nDate Of Joining  ${details.dateofjoining} \nContact Number ${details.contact_number} \nEmail ${details.email} \nExperience (yrs) ${details.experience} \nCity ${details.city} \nHobbies: ${details.hobbies}`
            res={
               title:details.firstname+" "+details.lastname,
-              description:description,
+              description:description1,
               emp_id:details.emp_id
             }
        }else{
+        description1={
+            fullname:details.firstname+" "+details.middlename+" "+details.lastname,
+            emp_id:details.emp_id,
+            dateofjoining:details.dateofjoining,
+            contact_number:details.contact_number,
+            email:details.email,
+            experience:details.experience,
+            city:details.city,
+            hobbies:details.hobbies
+        }
         description=`Full Name: ${details.firstname} ${details.middlename} ${details.lastname} \r\nEmployee Id - ${details.emp_id} \nDate Of Joining  ${details.dateofjoining} \nContact Number ${details.contact_number} \nEmail ${details.email} \nExperience (yrs) ${details.experience} \nCity ${details.city} Hobbies: ${details.hobbies}` 
             res={
             title:details.firstname+" "+details.middlename+" "+details.lastname,
-            description:description,
+            description:description1,
             emp_id:details.emp_id
           }
     }
         allUsersDetails.saveValues(res)
     }
-
-    
-
-
 }])
 
 userModule.controller("userDetailsController",["$scope","formDetails","$location","allUsersDetails",function($scope,formDetails,$location,allUsersDetails){
-       
+    $scope.searchBy="First Name"
+        $scope.setSearchBy=function(searchBy){
+            $scope.searchBy=searchBy
+        }
+
         $scope.isShowMore=true
         console.log($scope.isShowMore)
         
@@ -115,32 +140,46 @@ userModule.controller("userDetailsController",["$scope","formDetails","$location
        }
        console.log(formDetails.getDetails(),"userDetailsController")
 
+       
        $scope.details=allUsersDetails.getValues()
-       console.log($scope.details)
+       
+       $scope.searchDetails=function(searchvalue){
+           console.log($scope.searchBy)
+           if(searchvalue===undefined){
+               searchvalue=""
+           }
+           if($scope.searchBy==="First Name"){
+            
+            $scope.details= allUsersDetails.getValues().filter((i)=>{
+                console.log(i.title.split(" ")[0].includes(searchvalue),i.title.split(" ")[0])
+
+                return i.title.split(" ")[0].includes(searchvalue)
+            })
+            console.log($scope.details)
+
+           }else if($scope.searchBy==="Emp Id"){
+            $scope.details= allUsersDetails.getValues().filter((i)=>{
+                console.log(searchvalue,i.emp_id)
+                return i.emp_id.includes(searchvalue)
+            })
+            console.log($scope.details)
+           }
+       }
 
        $scope.redirectUser=function(){
         $location.path("/addUser")
        }
-}])
 
-userModule.controller("toggleSeeMore",["$scope",function($scope){ 
-    $scope.isShowMore=true
-    $scope.toggleShowMore=function(emp_id){
+
        
-        $scope.isShowMore=!$scope.isShowMore
-        // console.log(emp_id)
-        // let userValues=allUsersDetails.getValues()
-        // console.log(userValues)
-        // userValues=userValues.map((value)=>{
-        //     if(value.emp_id===emp_id){
-        //         value.isShowMore=!value.isShowMore
-        //     }
-        //     else{
-        //         return value
-        //     }
-        // })
-        // allUsersDetails.setValues(userValues)
-        // console.log($scope.isShowMore)
+    this.ScopeToggle=false
+    $scope.isShowMore=this.ScopeToggle
 
-    }
+
+    $scope.toggleShowMore=function(){
+        $scope.isShowMore=!$scope.isShowMore
+     }
+
+
+
 }])
