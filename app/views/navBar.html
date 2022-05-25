@@ -13,13 +13,13 @@
             <a class="nav-link" href="/angular-js-playlist/#!/addUser">Add User</a>
           </li>
         </ul>
-        <form class="d-flex " ng-controller="userDetailsController">
+        <form class="d-flex" ng-controller="userDetailsController">
           <select class="form-select me-2" ng-model="searchBy" ng-change="setSearchBy(searchBy)" aria-label="Default select example">
             <option ng-selected="searchBy.isNotUndefined()">First Name</option>
             <option>Emp Id</option>
           </select>
-          <input class="form-control me-2" type="search" placeholder="Search" ng-model="searchValue" aria-label="Search" >
-          <button class="btn btn-outline-success" ng-click="searchDetails(searchValue)">Search</button>
+          <input class="form-control me-2" type="search" placeholder="Search" ng-change="setText(searchText)" ng-model="searchText" aria-label="Search" >
+          <button class="btn btn-outline-success">Search</button>
         </form>
       </div>
     </div>

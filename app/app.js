@@ -24,6 +24,7 @@ userModule.config(['$routeProvider',function($routeProvider){
 userModule.factory("allUsersDetails",function(){
     let usersValues=[{
         title:"Gaurang Bhatt",
+        firstname:"Gaurang",
         description:{
             fullname:"Gaurang Bhatt",
             emp_id:`CTE`,
@@ -66,6 +67,17 @@ userModule.factory("formDetails",function(){
     return formValues
 
 })
+userModule.factory("searchText",function(){
+    let arr={}
+    var text=""
+    arr.setText=function(text1){
+     text=text1
+    }
+    arr.getText=function(){
+        return text
+    }
+    return arr
+})
 
 userModule.controller("userModuleController",["$scope","$location","formDetails","allUsersDetails",function($scope,$location,formDetails,allUsersDetails){
     $scope.getUserDetails=function(user){
@@ -101,6 +113,7 @@ userModule.controller("userModuleController",["$scope","$location","formDetails"
            description="Full Name: "+details.firstname+" "+details.lastname+` \r\nEmployee Id : ${details.emp_id} \nDate Of Joining  ${details.dateofjoining} \nContact Number ${details.contact_number} \nEmail ${details.email} \nExperience (yrs) ${details.experience} \nCity ${details.city} \nHobbies: ${details.hobbies}`
            res={
               title:details.firstname+" "+details.lastname,
+              firstname:details.firstname,
               description:description1,
               emp_id:details.emp_id
             }
@@ -118,6 +131,7 @@ userModule.controller("userModuleController",["$scope","$location","formDetails"
         description=`Full Name: ${details.firstname} ${details.middlename} ${details.lastname} \r\nEmployee Id - ${details.emp_id} \nDate Of Joining  ${details.dateofjoining} \nContact Number ${details.contact_number} \nEmail ${details.email} \nExperience (yrs) ${details.experience} \nCity ${details.city} Hobbies: ${details.hobbies}` 
             res={
             title:details.firstname+" "+details.middlename+" "+details.lastname,
+            firstname:details.firstname,
             description:description1,
             emp_id:details.emp_id
           }
@@ -126,11 +140,21 @@ userModule.controller("userModuleController",["$scope","$location","formDetails"
     }
 }])
 
-userModule.controller("userDetailsController",["$scope","formDetails","$location","allUsersDetails",function($scope,formDetails,$location,allUsersDetails){
+userModule.controller("userDetailsController",["$scope","formDetails","$location","allUsersDetails","$rootScope","searchText",function($scope,formDetails,$location,allUsersDetails,$rootScope,searchText){
     $scope.searchBy="First Name"
+
         $scope.setSearchBy=function(searchBy){
+            console.log("Search By",searchBy)
             $scope.searchBy=searchBy
         }
+        // $scope.setSearchValue=function(searchValue){
+        //     $scope.searchValue=searchValue
+        // }
+
+
+       $scope.setText=(text)=>{
+        searchText.setText(text)
+       }
 
         $scope.isShowMore=true
         console.log($scope.isShowMore)
@@ -142,29 +166,26 @@ userModule.controller("userDetailsController",["$scope","formDetails","$location
 
        
        $scope.details=allUsersDetails.getValues()
-       
-       $scope.searchDetails=function(searchvalue){
-           console.log($scope.searchBy)
-           if(searchvalue===undefined){
-               searchvalue=""
-           }
-           if($scope.searchBy==="First Name"){
-            
-            $scope.details= allUsersDetails.getValues().filter((i)=>{
-                console.log(i.title.split(" ")[0].includes(searchvalue),i.title.split(" ")[0])
-
-                return i.title.split(" ")[0].includes(searchvalue)
-            })
-            console.log($scope.details)
-
-           }else if($scope.searchBy==="Emp Id"){
-            $scope.details= allUsersDetails.getValues().filter((i)=>{
-                console.log(searchvalue,i.emp_id)
-                return i.emp_id.includes(searchvalue)
-            })
-            console.log($scope.details)
-           }
+      
+       $scope.searchFunction=function(i){
+           console.log("search Function",i)
+           console.log(searchText.getText(),"Root Scope")
+           return i.firstname.toLowerCase().includes(searchText.getText().toLowerCase())
        }
+       
+    //    $scope.searchDetails=function(searchvalue){
+    //        console.log("Search Detail Search By",$scope.searchBy)
+    //        console.log("Search value",searchvalue)
+
+    //        if(searchvalue===undefined){
+    //            searchvalue=""
+    //            $scope.searchText=searchvalue
+    //            console.log("userDetails",$scope.searchText)
+    //        }else{
+    //            $scope.searchText=searchvalue
+    //            console.log("userDetails",$scope.searchText)
+    //        }
+    //    }
 
        $scope.redirectUser=function(){
         $location.path("/addUser")

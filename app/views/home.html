@@ -1,11 +1,12 @@
 <div style="margin-top:20px" class="text-center">
 <div class="container">
     <div class="row row-cols-auto gap-4 justify-content-center" >
-    <div class="card col-3 card_item" ng-model="details" ng-repeat="i in details" ng-if='i.title !== "undefined undefined"' ng-controller="userDetailsController">
+      
+    <div class="card col-3 card_item" ng-repeat="i in details | filter: searchFunction" ng-controller="userDetailsController">
         <img src="https://picsum.photos/400" class="card-img-top;" alt="random_pic" >
         <div class="card-body">
           <h5 class="card-title">{{i.title}}</h5>
-          <div>
+        <div>
           <div class="card-text" style="display: inline;">
             <span ng-if="!isShowMore">
                <small style="display: block;"><strong>Full Name: </strong>{{i.description.fullname}}</small>
